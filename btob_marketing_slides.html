@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2Bマーケティング主要チャネル 業務工程の因数分解（完全版）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --base: #0f172a;
+    --base-light: #1e293b;
+    --base-mid: #334155;
+    --accent: #38bdf8;
+    --accent-dim: rgba(56,189,248,0.15);
+    --accent-glow: rgba(56,189,248,0.3);
+    --white: #f8fafc;
+    --muted: #94a3b8;
+    --green: #34d399;
+    --amber: #fbbf24;
+    --rose: #fb7185;
+    --purple: #a78bfa;
+    --teal: #2dd4bf;
+    --slide-w: 1280px;
+    --slide-h: 720px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #060d1a;
+    font-family: 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .slide {
+    width: var(--slide-w);
+    height: var(--slide-h);
+    background: var(--base);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* ─── grid noise overlay ─── */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .slide > * { position: relative; z-index: 1; }
+
+  /* ═══════════════════════════════════════
+     SLIDE 1: TITLE
+  ═══════════════════════════════════════ */
+  .s1-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(56,189,248,0.12) 0%, transparent 70%);
+  }
+
+  .s1-content {
+    position: relative; z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 60px;
+  }
+
+  .s1-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .s1-eyebrow::before, .s1-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .s1-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .s1-title span {
+    color: var(--accent);
+  }
+
+  .s1-sub {
+    margin-top: 28px;
+    font-size: 16px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .s1-tags {
+    margin-top: 40px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .s1-tag {
+    padding: 8px 20px;
+    border: 1px solid rgba(56,189,248,0.3);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(56,189,248,0.05);
+  }
+
+  .s1-corner {
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--base-mid);
+    letter-spacing: 0.1em;
+  }
+
+  .s1-num {
+    position: absolute;
+    top: 36px;
+    right: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--base-mid);
+    letter-spacing: 0.2em;
+  }
+
+  .s1-deco {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(56,189,248,0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .s1-deco2 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(56,189,248,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* ═══════════════════════════════════════
+     COMMON SLIDE LAYOUT
+  ═══════════════════════════════════════ */
+
+  .slide-header {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    border-bottom: 1px solid rgba(56,189,248,0.15);
+    background: linear-gradient(180deg, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.9) 100%);
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .slide-header-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    flex-shrink: 0;
+  }
+
+  .slide-header-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 3px 10px;
+    border: 1px solid rgba(56,189,248,0.3);
+    border-radius: 4px;
+  }
+
+  .slide-header-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .slide-num {
+    margin-left: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--base-mid);
+    letter-spacing: 0.15em;
+  }
+
+  .slide-body {
+    padding: 20px 48px 20px;
+    display: flex;
+    gap: 24px;
+    height: calc(100% - 68px);
+  }
+
+  /* ═══════════════════════════════════════
+     CHANNEL PANEL
+  ═══════════════════════════════════════ */
+
+  .channel-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .channel-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2px;
+  }
+
+  .channel-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .channel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.03em;
+  }
+
+  .channel-sub {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  /* Flow timeline */
+  .flow-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .flow-phase {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+  }
+
+  .flow-phase-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 24px;
+    margin-top: 2px;
+  }
+
+  .flow-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--base);
+    outline: 1px solid var(--accent);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    margin-top: 3px;
+  }
+
+  .flow-line {
+    width: 1px;
+    flex: 1;
+    min-height: 12px;
+    background: linear-gradient(180deg, rgba(56,189,248,0.4) 0%, rgba(56,189,248,0.1) 100%);
+    margin-top: 1px;
+  }
+
+  .flow-content {
+    flex: 1;
+    background: var(--base-light);
+    border: 1px solid rgba(56,189,248,0.1);
+    border-radius: 6px;
+    padding: 7px 10px;
+    margin-bottom: 4px;
+    transition: border-color 0.2s;
+  }
+
+  .flow-content:hover {
+    border-color: rgba(56,189,248,0.3);
+  }
+
+  .flow-phase-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .flow-phase-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(56,189,248,0.15);
+  }
+
+  .flow-tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .flow-task {
+    font-size: 10px;
+    color: #cbd5e1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 2px 7px;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  .flow-task.key {
+    background: rgba(56,189,248,0.1);
+    border-color: rgba(56,189,248,0.25);
+    color: #7dd3fc;
+  }
+
+  .divider {
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(56,189,248,0.2) 20%, rgba(56,189,248,0.2) 80%, transparent 100%);
+    flex-shrink: 0;
+    margin: 8px 0;
+  }
+
+  /* ═══════════════════════════════════════
+     SLIDE 6 SPECIAL: STRATEGY
+  ═══════════════════════════════════════ */
+
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .strategy-block {
+    background: var(--base-light);
+    border: 1px solid rgba(56,189,248,0.15);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .strategy-block-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .strategy-block-title-icon {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .kpi-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .kpi-chip {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  .kpi-chip.blue { color: var(--accent); border-color: rgba(56,189,248,0.3); background: rgba(56,189,248,0.07); }
+  .kpi-chip.green { color: var(--green); border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
+  .kpi-chip.amber { color: var(--amber); border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.07); }
+  .kpi-chip.purple { color: var(--purple); border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.07); }
+  .kpi-chip.teal { color: var(--teal); border-color: rgba(45,212,191,0.3); background: rgba(45,212,191,0.07); }
+
+  /* color variants for channel icons */
+  .ic-blue   { background: rgba(56,189,248,0.15); color: var(--accent); }
+  .ic-green  { background: rgba(52,211,153,0.15); color: var(--green); }
+  .ic-amber  { background: rgba(251,191,36,0.15); color: var(--amber); }
+  .ic-purple { background: rgba(167,139,250,0.15); color: var(--purple); }
+  .ic-rose   { background: rgba(251,113,133,0.15); color: var(--rose); }
+  .ic-teal   { background: rgba(45,212,191,0.15); color: var(--teal); }
+
+  .dot-blue   { background: var(--accent); outline-color: var(--accent); box-shadow: 0 0 6px var(--accent); }
+  .dot-green  { background: var(--green); outline-color: var(--green); box-shadow: 0 0 6px var(--green); }
+  .dot-amber  { background: var(--amber); outline-color: var(--amber); box-shadow: 0 0 6px var(--amber); }
+  .dot-purple { background: var(--purple); outline-color: var(--purple); box-shadow: 0 0 6px var(--purple); }
+  .dot-rose   { background: var(--rose); outline-color: var(--rose); box-shadow: 0 0 6px var(--rose); }
+  .dot-teal   { background: var(--teal); outline-color: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
+  .label-blue   { color: var(--accent); }
+  .label-green  { color: var(--green); }
+  .label-amber  { color: var(--amber); }
+  .label-purple { color: var(--purple); }
+  .label-rose   { color: var(--rose); }
+  .label-teal   { color: var(--teal); }
+
+  .line-blue   { background: linear-gradient(180deg, rgba(56,189,248,0.5) 0%, rgba(56,189,248,0.1) 100%); }
+  .line-green  { background: linear-gradient(180deg, rgba(52,211,153,0.5) 0%, rgba(52,211,153,0.1) 100%); }
+  .line-amber  { background: linear-gradient(180deg, rgba(251,191,36,0.5) 0%, rgba(251,191,36,0.1) 100%); }
+  .line-purple { background: linear-gradient(180deg, rgba(167,139,250,0.5) 0%, rgba(167,139,250,0.1) 100%); }
+  .line-rose   { background: linear-gradient(180deg, rgba(251,113,133,0.5) 0%, rgba(251,113,133,0.1) 100%); }
+  .line-teal   { background: linear-gradient(180deg, rgba(45,212,191,0.5) 0%, rgba(45,212,191,0.1) 100%); }
+
+  .content-border-blue   { border-color: rgba(56,189,248,0.15); }
+  .content-border-green  { border-color: rgba(52,211,153,0.15); }
+  .content-border-amber  { border-color: rgba(251,191,36,0.15); }
+  .content-border-purple { border-color: rgba(167,139,250,0.15); }
+  .content-border-rose   { border-color: rgba(251,113,133,0.15); }
+  .content-border-teal   { border-color: rgba(45,212,191,0.15); }
+
+  .slide-label {
+    position: absolute;
+    top: 36px;
+    right: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--base-mid);
+    letter-spacing: 0.15em;
+    z-index: 10;
+  }
+
+  /* narrow text for task */
+  .flow-task.sm { font-size: 9.5px; }
+
+  /* phase label color overrides */
+  .phase-label-green { color: var(--green) !important; }
+  .phase-label-amber { color: var(--amber) !important; }
+  .phase-label-purple { color: var(--purple) !important; }
+  .phase-label-rose { color: var(--rose) !important; }
+  .phase-label-teal { color: var(--teal) !important; }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ SLIDE 1: TITLE ═══════════════════════ -->
+<div class="slide">
+  <div class="s1-bg"></div>
+  <div class="s1-deco"></div>
+  <div class="s1-deco2"></div>
+  <div class="slide-label">01 / 06</div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">B2B Marketing Operations</div>
+    <div class="s1-title">
+      B2Bマーケティング主要チャネル<br>
+      <span>業務工程の因数分解</span>（完全版）
+    </div>
+    <div class="s1-sub">
+      獲得（オンライン／オフライン）・ナーチャリング・クリエイティブ・全体最適<br>
+      全チャネルの企画→実行→分析フローを実行レベルで可視化
+    </div>
+    <div class="s1-tags">
+      <div class="s1-tag">🎯 リード獲得 オンライン</div>
+      <div class="s1-tag">📣 リード獲得 オフライン</div>
+      <div class="s1-tag">💌 リードナーチャリング</div>
+      <div class="s1-tag">🎨 クリエイティブ</div>
+      <div class="s1-tag">📊 戦略・全体最適</div>
+    </div>
+  </div>
+  <div class="s1-corner">B2B MARKETING · COMPLETE EDITION</div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 2: オンライン獲得 SEO / Web広告 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-header-dot"></div>
+    <div class="slide-header-category">獲得：オンライン</div>
+    <div class="slide-header-title">SEO・記事制作 ／ Web広告運用（リスティング・Meta・ディスプレイ）</div>
+    <div class="slide-num">02 / 06</div>
+  </div>
+  <div class="slide-body">
+
+    <!-- SEO -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-blue">🔍</div>
+        <div>
+          <div class="channel-title">SEO / AIO / LLMO・記事制作</div>
+          <div class="channel-sub">オーガニック流入獲得 → リード転換</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div><div class="flow-line line-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">PLAN — 戦略・設計</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">競合SEO調査</span>
+              <span class="flow-task">ペルソナ課題特定</span>
+              <span class="flow-task">キーワードリスト作成</span>
+              <span class="flow-task">検索意図分類</span>
+              <span class="flow-task">コンテンツカレンダー策定</span>
+              <span class="flow-task">AIサーチ対応方針（AIO/LLMO）</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div><div class="flow-line line-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">BUILD — 構成・制作</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">タイトル・メタ設計</span>
+              <span class="flow-task">アウトライン作成</span>
+              <span class="flow-task">一次情報・統計収集</span>
+              <span class="flow-task">記事執筆（社内/外注）</span>
+              <span class="flow-task">図解・画像作成</span>
+              <span class="flow-task">内部リンク設計</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div><div class="flow-line line-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">PUBLISH — 公開・最適化</div>
+            <div class="flow-tasks">
+              <span class="flow-task">構造化データ実装</span>
+              <span class="flow-task key">CTA・LP誘導設置</span>
+              <span class="flow-task">サイトマップ更新</span>
+              <span class="flow-task">Indexing申請</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">ANALYZE — 計測・改善</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">順位・流入モニタリング</span>
+              <span class="flow-task">CVR測定</span>
+              <span class="flow-task">記事リライト優先度付け</span>
+              <span class="flow-task">E-E-A-T改善</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Web広告 -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-amber">📣</div>
+        <div>
+          <div class="channel-title">Web広告運用（リスティング / Meta / ディスプレイ）</div>
+          <div class="channel-sub">Google・Yahoo・MS・Meta広告 ペイド獲得</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div><div class="flow-line line-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">PLAN — 戦略・予算設計</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">目標CPA・ROAS設定</span>
+              <span class="flow-task">チャネル選定</span>
+              <span class="flow-task">予算配分計画</span>
+              <span class="flow-task">ターゲティング設計</span>
+              <span class="flow-task">競合広告調査</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div><div class="flow-line line-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">BUILD — クリエイティブ・入稿</div>
+            <div class="flow-tasks">
+              <span class="flow-task">広告文A/Bパターン作成</span>
+              <span class="flow-task key">バナー・動画制作依頼</span>
+              <span class="flow-task">LPリンク設定</span>
+              <span class="flow-task">コンバージョン計測設置</span>
+              <span class="flow-task">キーワードリスト入稿</span>
+              <span class="flow-task">除外KW設定</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div><div class="flow-line line-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">RUN — 運用・最適化</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">入札調整・スマート入札設定</span>
+              <span class="flow-task">クリエイティブローテーション</span>
+              <span class="flow-task">オーディエンス絞り込み</span>
+              <span class="flow-task">広告スケジュール最適化</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">ANALYZE — 効果測定・報告</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">週次・月次レポート作成</span>
+              <span class="flow-task">インプレッション～CV分析</span>
+              <span class="flow-task">アトリビューション確認</span>
+              <span class="flow-task">次期改善提案</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 3: ウェビナー / SNS ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-header-dot" style="background:var(--green);box-shadow:0 0 12px var(--green);"></div>
+    <div class="slide-header-category" style="color:var(--green);border-color:rgba(52,211,153,0.3);">獲得：オンライン</div>
+    <div class="slide-header-title">ウェビナー・セミナー開催 ／ SNS運用・note／コラム執筆</div>
+    <div class="slide-num">03 / 06</div>
+  </div>
+  <div class="slide-body">
+
+    <!-- ウェビナー -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-green">📡</div>
+        <div>
+          <div class="channel-title">ウェビナー / オンラインセミナー開催</div>
+          <div class="channel-sub">企画→集客→当日運営→フォローまで一気通貫</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-green"></div><div class="flow-line line-green"></div></div>
+          <div class="flow-content content-border-green">
+            <div class="flow-phase-label label-green">PLAN — 企画設計</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">テーマ・ターゲット設定</span>
+              <span class="flow-task">登壇者選定・依頼</span>
+              <span class="flow-task">配信ツール選定（Zoom/Teams）</span>
+              <span class="flow-task">日程・申込LP設計</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-green"></div><div class="flow-line line-green"></div></div>
+          <div class="flow-content content-border-green">
+            <div class="flow-phase-label label-green">PROMOTE — 集客</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">メルマガ・SNS告知</span>
+              <span class="flow-task">広告配信設定</span>
+              <span class="flow-task">申込フォーム連携</span>
+              <span class="flow-task">リマインドメール設定</span>
+              <span class="flow-task">共催先連携（合同開催）</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-green"></div><div class="flow-line line-green"></div></div>
+          <div class="flow-content content-border-green">
+            <div class="flow-phase-label label-green">RUN — 当日運営</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">進行台本・スライド最終確認</span>
+              <span class="flow-task">配信テスト・音響確認</span>
+              <span class="flow-task">チャット・Q&A対応</span>
+              <span class="flow-task">録画データ保存</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-green"></div></div>
+          <div class="flow-content content-border-green">
+            <div class="flow-phase-label label-green">NURTURE — フォロー・活用</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">参加者へのサンキューメール</span>
+              <span class="flow-task">アンケート集計・ホットリード特定</span>
+              <span class="flow-task">録画アーカイブ公開</span>
+              <span class="flow-task">商談化フォロー連携</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SNS / note -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-purple">📱</div>
+        <div>
+          <div class="channel-title">SNS運用 / note・コラム執筆 / プレスリリース</div>
+          <div class="channel-sub">ブランド認知・思想リーダーシップ確立</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-purple"></div><div class="flow-line line-purple"></div></div>
+          <div class="flow-content content-border-purple">
+            <div class="flow-phase-label label-purple">PLAN — 方針・カレンダー</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">チャネル別KPI設定（X/LinkedIn/FB）</span>
+              <span class="flow-task">トンマナ・ガイドライン策定</span>
+              <span class="flow-task">月次コンテンツカレンダー作成</span>
+              <span class="flow-task">ハッシュタグ戦略策定</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-purple"></div><div class="flow-line line-purple"></div></div>
+          <div class="flow-content content-border-purple">
+            <div class="flow-phase-label label-purple">CREATE — コンテンツ制作</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">投稿文作成・画像制作</span>
+              <span class="flow-task">note記事執筆・構成作成</span>
+              <span class="flow-task">社内ナレッジのコラム化</span>
+              <span class="flow-task">事例記事化依頼</span>
+              <span class="flow-task">プレスリリース原稿作成</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-purple"></div><div class="flow-line line-purple"></div></div>
+          <div class="flow-content content-border-purple">
+            <div class="flow-phase-label label-purple">PUBLISH — 承認・配信</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">法務・コンプライアンス確認</span>
+              <span class="flow-task">予約投稿設定</span>
+              <span class="flow-task">配信ツール連携（PR TIMES等）</span>
+              <span class="flow-task">社員アンプリファイ依頼</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-purple"></div></div>
+          <div class="flow-content content-border-purple">
+            <div class="flow-phase-label label-purple">ANALYZE — エンゲージメント分析</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">インプレッション・エンゲージメント計測</span>
+              <span class="flow-task">フォロワー推移管理</span>
+              <span class="flow-task">流入・CV貢献測定</span>
+              <span class="flow-task">コメント対応・CX改善</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 4: オフライン獲得 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-header-dot" style="background:var(--amber);box-shadow:0 0 12px var(--amber);"></div>
+    <div class="slide-header-category" style="color:var(--amber);border-color:rgba(251,191,36,0.3);">獲得：オフライン</div>
+    <div class="slide-header-title">展示会出展 / カンファレンス開催 ／ インサイドセールス・DM・FAX送付・テレマ</div>
+    <div class="slide-num">04 / 06</div>
+  </div>
+  <div class="slide-body">
+
+    <!-- 展示会 -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-amber">🏟️</div>
+        <div>
+          <div class="channel-title">展示会出展 / カンファレンス / 自社セミナー開催</div>
+          <div class="channel-sub">代理店・パートナー活用・メディア出稿・業界紙出稿・書籍出版含む</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div><div class="flow-line line-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">PLAN — 出展計画</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">展示会選定・ROI試算</span>
+              <span class="flow-task">出展エリア・ブースサイズ決定</span>
+              <span class="flow-task">目標リード数設定</span>
+              <span class="flow-task">社内体制・役割分担</span>
+              <span class="flow-task">代理店・パートナー招集依頼</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div><div class="flow-line line-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">PREPARE — 準備・制作</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">ブースデザイン・看板制作依頼</span>
+              <span class="flow-task">パンフレット・資料印刷</span>
+              <span class="flow-task">デモ機・展示物手配</span>
+              <span class="flow-task">タクシー広告・屋外イベント広告</span>
+              <span class="flow-task">業界紙・メディアスポンサー調整</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div><div class="flow-line line-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">EXEC — 当日・商談獲得</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">名刺・リードスキャン対応</span>
+              <span class="flow-task">ブース説明・デモ実施</span>
+              <span class="flow-task">アンケート収集</span>
+              <span class="flow-task">商談アポ打診</span>
+              <span class="flow-task">コミュニティ形成・交流促進</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-amber"></div></div>
+          <div class="flow-content content-border-amber">
+            <div class="flow-phase-label label-amber">FOLLOW — 事後フォロー</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">名刺データ化・CRM登録</span>
+              <span class="flow-task">温度感別メール配信</span>
+              <span class="flow-task">書籍・資料送付</span>
+              <span class="flow-task">展示会レポート作成・ROI算出</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- IS / DM / FAX -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-rose">📞</div>
+        <div>
+          <div class="channel-title">IS（飛び込み含む）・紙DM・FAX送付</div>
+          <div class="channel-sub">アウトバウンド獲得チャネル全体を網羅</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-rose"></div><div class="flow-line line-rose"></div></div>
+          <div class="flow-content content-border-rose">
+            <div class="flow-phase-label label-rose">PLAN — ターゲティング設計</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">ターゲットリスト作成（業種・規模・役職）</span>
+              <span class="flow-task">優先度スコアリング</span>
+              <span class="flow-task">架電・送付シナリオ設計</span>
+              <span class="flow-task">KPI（コンタクト率・商談化率）設定</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-rose"></div><div class="flow-line line-rose"></div></div>
+          <div class="flow-content content-border-rose">
+            <div class="flow-phase-label label-rose">CREATE — 素材制作</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">トークスクリプト作成</span>
+              <span class="flow-task">FAX原稿デザイン・印刷</span>
+              <span class="flow-task">紙DM封入・送付物手配</span>
+              <span class="flow-task">LP・資料URL付与</span>
+              <span class="flow-task">飛び込み営業トーク資料作成</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-rose"></div><div class="flow-line line-rose"></div></div>
+          <div class="flow-content content-border-rose">
+            <div class="flow-phase-label label-rose">EXEC — 実行・接触</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">FAX一括送信・到達確認</span>
+              <span class="flow-task">DM発送・郵便局手配</span>
+              <span class="flow-task">架電実施・ヒアリング</span>
+              <span class="flow-task">定期営業訪問（飛び込み含む）</span>
+              <span class="flow-task">反応履歴のCRM記録</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-rose"></div></div>
+          <div class="flow-content content-border-rose">
+            <div class="flow-phase-label label-rose">ANALYZE — 効果測定・改善</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">開封率・応答率・商談化率集計</span>
+              <span class="flow-task">トーク改善・スクリプト更新</span>
+              <span class="flow-task">FAXデザインA/Bテスト</span>
+              <span class="flow-task">コスト per リード算出</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 5: ナーチャリング ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-header-dot" style="background:var(--teal);box-shadow:0 0 12px var(--teal);"></div>
+    <div class="slide-header-category" style="color:var(--teal);border-color:rgba(45,212,191,0.3);">リードナーチャリング</div>
+    <div class="slide-header-title">メールマーケティング・MA運用 ／ ホワイトペーパー作成・事例制作・リマーケティング</div>
+    <div class="slide-num">05 / 06</div>
+  </div>
+  <div class="slide-body">
+
+    <!-- メールマーケ / MA -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-teal">📧</div>
+        <div>
+          <div class="channel-title">メールマーケティング / MA（マーケオートメーション）運用</div>
+          <div class="channel-sub">メルマガ・DM送付・リマーケティング・定期営業</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-teal"></div><div class="flow-line line-teal"></div></div>
+          <div class="flow-content content-border-teal">
+            <div class="flow-phase-label label-teal">PLAN — MA設計</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">MAツール選定・導入設定</span>
+              <span class="flow-task">リードスコアリング設計</span>
+              <span class="flow-task">セグメント定義（業種・ファネル段階）</span>
+              <span class="flow-task">シナリオ・ジャーニーマップ作成</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-teal"></div><div class="flow-line line-teal"></div></div>
+          <div class="flow-content content-border-teal">
+            <div class="flow-phase-label label-teal">CREATE — コンテンツ・メール制作</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">メールHTML制作・件名A/B設計</span>
+              <span class="flow-task">ステップメール原稿作成</span>
+              <span class="flow-task">DM送付物デザイン</span>
+              <span class="flow-task">CTAリンク・ランディング設計</span>
+              <span class="flow-task">リマーケティング広告クリエイティブ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-teal"></div><div class="flow-line line-teal"></div></div>
+          <div class="flow-content content-border-teal">
+            <div class="flow-phase-label label-teal">EXEC — 配信・自動化実行</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">配信スケジュール設定・テスト送信</span>
+              <span class="flow-task">MAシナリオ稼働・トリガー設定</span>
+              <span class="flow-task">定期営業・電話フォロー連携</span>
+              <span class="flow-task">ホットリードのIS引き渡し</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-teal"></div></div>
+          <div class="flow-content content-border-teal">
+            <div class="flow-phase-label label-teal">ANALYZE — 効果測定・育成改善</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">開封率・クリック率・配信解除率計測</span>
+              <span class="flow-task">スコア変動・商談化率追跡</span>
+              <span class="flow-task">シナリオ改善・コンテンツ最適化</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ホワイトペーパー / 事例 -->
+    <div class="channel-panel">
+      <div class="channel-title-row">
+        <div class="channel-icon ic-blue">📄</div>
+        <div>
+          <div class="channel-title">ホワイトペーパー作成 / 事例制作 / インフォグラフィック</div>
+          <div class="channel-sub">コンテンツマーケティング資産の構築</div>
+        </div>
+      </div>
+      <div class="flow-container">
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div><div class="flow-line line-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">PLAN — 企画・設計</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">競合リサーチ・課題特定</span>
+              <span class="flow-task">テーマ・ターゲット設定</span>
+              <span class="flow-task">章立て・ワイヤーフレーム構成</span>
+              <span class="flow-task">事例取材先選定・協力依頼</span>
+              <span class="flow-task">インフォグラフィック構成案</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div><div class="flow-line line-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">CREATE — 制作・デザイン</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">トンマナ決定・デザインラフ作成</span>
+              <span class="flow-task">デザイナー依頼・素材提供</span>
+              <span class="flow-task">原稿執筆・ファクトチェック</span>
+              <span class="flow-task">修正指示・デザイン微調整</span>
+              <span class="flow-task">事例インタビュー・原稿確認</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div><div class="flow-line line-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">PUBLISH — 公開・ゲーティング</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">PDF化・DLフォーム設置</span>
+              <span class="flow-task">MA連携・自動メール設定</span>
+              <span class="flow-task">サイト掲載・SEO最適化</span>
+              <span class="flow-task">メルマガ・SNSでの告知</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-phase">
+          <div class="flow-phase-marker"><div class="flow-dot dot-blue"></div></div>
+          <div class="flow-content content-border-blue">
+            <div class="flow-phase-label label-blue">ANALYZE — DL数・リード質評価</div>
+            <div class="flow-tasks">
+              <span class="flow-task key">DL数・フォーム離脱率計測</span>
+              <span class="flow-task">獲得リードの質評価</span>
+              <span class="flow-task">コンテンツ更新・二次利用（SNS等）</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 6: 全体最適 ═══════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-header-dot" style="background:var(--purple);box-shadow:0 0 12px var(--purple);"></div>
+    <div class="slide-header-category" style="color:var(--purple);border-color:rgba(167,139,250,0.3);">全体最適</div>
+    <div class="slide-header-title">マーケティング戦略立案 ／ 効果検証・ダッシュボード構築 ／ クリエイティブ全般</div>
+    <div class="slide-num">06 / 06</div>
+  </div>
+  <div class="slide-body" style="display:flex;flex-direction:column;gap:14px;padding-top:16px;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1;">
+
+      <!-- マーケ戦略 -->
+      <div class="strategy-block" style="border-color:rgba(167,139,250,0.2);">
+        <div class="strategy-block-title">
+          <div class="strategy-block-title-icon ic-purple">🧭</div>
+          マーケティング戦略立案
+        </div>
+        <div class="flow-container" style="gap:4px;">
+          <div class="flow-phase">
+            <div class="flow-phase-marker"><div class="flow-dot dot-purple" style="width:7px;height:7px;margin-top:2px;"></div><div class="flow-line line-purple"></div></div>
+            <div class="flow-content content-border-purple" style="padding:5px 9px;">
+              <div class="flow-phase-label label-purple" style="font-size:8.5px;">STRATEGY</div>
+              <div class="flow-tasks">
+                <span class="flow-task sm key">市場調査・競合分析</span>
+                <span class="flow-task sm">ターゲット・ペルソナ設計</span>
+                <span class="flow-task sm">3C/4P分析</span>
+                <span class="flow-task sm">年間予算計画策定</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-phase">
+            <div class="flow-phase-marker"><div class="flow-dot dot-purple" style="width:7px;height:7px;margin-top:2px;"></div><div class="flow-line line-purple"></div></div>
+            <div class="flow-content content-border-purple" style="padding:5px 9px;">
+              <div class="flow-phase-label label-purple" style="font-size:8.5px;">PLANNING</div>
+              <div class="flow-tasks">
+                <span class="flow-task sm key">チャネルミックス設計</span>
+                <span class="flow-task sm">KGI/KPI・OKR設定</span>
+                <span class="flow-task sm">実行ロードマップ作成</span>
+                <span class="flow-task sm">社内説明・経営承認</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-phase">
+            <div class="flow-phase-marker"><div class="flow-dot dot-purple" style="width:7px;height:7px;margin-top:2px;"></div></div>
+            <div class="flow-content content-border-purple" style="padding:5px 9px;">
+              <div class="flow-phase-label label-purple" style="font-size:8.5px;">REVIEW</div>
+              <div class="flow-tasks">
+                <span class="flow-task sm key">四半期戦略レビュー</span>
+                <span class="flow-task sm">予算再配分判断</span>
+                <span class="flow-task sm">事業部連携・FS調整</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ダッシュボード -->
+      <div class="strategy-block" style="border-color:rgba(52,211,153,0.2);">
+        <div class="strategy-block-title">
+          <div class="strategy-block-title-icon ic-green">📊</div>
+          効果検証・ダッシュボード構築
+        </div>
+        <div class="flow-container" style="gap:4px;">
+          <div class="flow-phase">
+            <div class="flow-phase-marker"><div class="flow-dot dot-green" style="width:7px;height:7px;margin-top:2px;"></div><div class="flow-line line-green"></div></div>
+            <div class="flow-content content-border-green" style="padding:5px 9px;">
+              <div class="flow-phase-label label-green" style="font-size:8.5px;">BUILD</div>
+              <div class="flow-tasks">
+                <span class="flow-task sm key">計測設計（GA4/CRM連携）</span>
+                <span class="flow-task sm">BIツール選定（Looker/Tableau）</span>
+                <span class="flow-task sm">データパイプライン構築</span>
+                <span class="flow-task sm">アトリビューションモデル設計</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-phase">
+            <div class="flow-phase-marker"><div class="flow-dot dot-green" style="width:7px;height:7px;margin-top:2px;"></div><div class="flow-line line-green"></div></div>
+            <div class="flow-content content-border-green" style="padding:5px 9px;">
+              <div class="flow-phase-label label-green" style="font-size:8.5px;">OPERATE</div>
+              <div class="flow-tasks">
+                <span class="flow-task sm key">週次・月次レポート自動化</span>
+                <span class="flow-task sm">チャネル別ROI可視化</span>
+                <span class="flow-task sm">異常値アラート設定</span>
+              </div>
+            </div>
+          </div>
+          <div class="flow-phase">
+            <div class="flow-phase-marker"><div class="flow-dot dot-green" style="width:7px;height:7px;margin-top:2px;"></div></div>
+            <div class="flow-content content-border-green" style="padding:5px 9px;">
+              <div class="flow-phase-label label-green" style="font-size:8.5px;">IMPROVE</div>
+              <div class="flow-tasks">
+                <span class="flow-task sm key">予実差異分析・原因特定</span>
+                <span class="flow-task sm">施策改善提案・優先度付け</span>
+                <span class="flow-task sm">ダッシュボード継続改善</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- クリエイティブ帯 -->
+    <div style="background:var(--base-light);border:1px solid rgba(56,189,248,0.12);border-radius:10px;padding:14px 20px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div class="channel-icon ic-rose" style="width:28px;height:28px;font-size:13px;">🎨</div>
+        <div class="channel-title" style="font-size:13px;">クリエイティブ全般（デザイン・コピー・映像・HP）</div>
+        <div style="margin-left:auto;font-size:9px;color:var(--muted);letter-spacing:0.1em;font-family:'Inter',sans-serif;">全チャネルを横断して支える制作機能</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 10px;">
+          <div style="font-size:9px;color:var(--accent);font-weight:700;margin-bottom:5px;letter-spacing:0.05em;">🖌 デザイン</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.7;">デザインディレクション<br>UI/UXデザイン<br>ロゴデザイン<br>チラシ・バナー<br>パンフレット</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 10px;">
+          <div style="font-size:9px;color:var(--green);font-weight:700;margin-bottom:5px;letter-spacing:0.05em;">✍ コピー</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.7;">コピー開発<br>記事ライティング<br>トーン&マナー策定<br>原稿校正<br>メッセージ設計</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 10px;">
+          <div style="font-size:9px;color:var(--amber);font-weight:700;margin-bottom:5px;letter-spacing:0.05em;">🎬 映像</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.7;">動画制作<br>テレビCM制作<br>撮影ディレクション<br>編集・MA<br>字幕・テロップ</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 10px;">
+          <div style="font-size:9px;color:var(--purple);font-weight:700;margin-bottom:5px;letter-spacing:0.05em;">💻 Web</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.7;">HP・LP制作<br>サイトリニューアル<br>CMS構築<br>表示速度最適化<br>アクセシビリティ</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 10px;">
+          <div style="font-size:9px;color:var(--teal);font-weight:700;margin-bottom:5px;letter-spacing:0.05em;">📊 可視化</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.7;">インフォグラフィック<br>DMデザイン<br>資料デザイン<br>看板・屋外広告<br>パッケージデザイン</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 10px;">
+          <div style="font-size:9px;color:var(--rose);font-weight:700;margin-bottom:5px;letter-spacing:0.05em;">⚙ 管理</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.7;">制作スケジュール管理<br>外注先ディレクション<br>素材・アセット管理<br>著作権・商標確認<br>品質チェック</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
